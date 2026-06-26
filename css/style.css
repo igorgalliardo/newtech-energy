@@ -5,6 +5,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 :root {
     --primary: #52B327;
     --white: #FFFFFF;
@@ -24,6 +28,41 @@ body {
     margin: auto;
     padding: 0 30px; /* 🔥 adiciona respiro lateral */
 }
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 
+        opacity 0.8s ease,
+        transform 0.8s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* versões diferentes opcional */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-40px);
+    transition: all 0.8s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: all 0.8s cubic-bezier(.19,1,.22,1);
+}
+
+.reveal-left.active,
+.reveal-right.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 
 
 /* ================= HEADER ================= */
@@ -58,6 +97,7 @@ body {
     align-items: center;
     width: 70px;
     flex-shrink: 0; /* 🔥 impede sumir */
+    margin-right: 30px;
 }
 
 .logo img {
@@ -258,6 +298,31 @@ body {
     transform: translateY(-3px);
 }
 
+.btn-contact,
+.btn-outline {
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+/* BOTÃO VERDE */
+.btn-contact {
+    background: var(--dark);
+    color: #fff;
+    border: 2px solid var(--dark);
+    margin-top: 25px;
+}
+
+.btn-contact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(12, 54, 109, 0.35);
+}
+
 
 /* ================= SECTIONS ================= */
 
@@ -445,6 +510,140 @@ body {
     margin-top: 40px;
     opacity: 0.7;
 }
+/* DEV */
+.footer-dev {
+    display: flex;
+    align-items: center;   /* 🔥 centraliza verticalmente */
+    justify-content: center;
+    gap: 10px;
+}
+
+.footer-dev span {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.footer-dev a {
+    display: flex;
+    align-items: center;
+}
+
+.footer-dev img {
+    height: 28px;          /* controla a altura */
+    width: auto;
+    display: block;        /* remove espaço fantasma inline */
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+    transform: none;
+    box-shadow: none;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+/* FORM FEEDBACK MODAL */
+.form-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.form-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.form-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.62);
+    backdrop-filter: blur(4px);
+}
+
+.form-modal__card {
+    position: relative;
+    width: min(100%, 430px);
+    background: #fff;
+    border-radius: 8px;
+    padding: 36px 34px 32px;
+    text-align: center;
+    box-shadow: 0 24px 70px rgba(15, 23, 42, 0.24);
+    transform: translateY(14px) scale(0.98);
+    transition: transform 0.25s ease;
+}
+
+.form-modal.active .form-modal__card {
+    transform: translateY(0) scale(1);
+}
+
+.form-modal__icon {
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-modal__icon::before {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.form-modal.is-success .form-modal__icon {
+    background: var(--primary);
+    box-shadow: 0 12px 26px rgba(82,179,39,0.26);
+}
+
+.form-modal.is-success .form-modal__icon::before {
+    content: "\2713";
+}
+
+.form-modal.is-error .form-modal__icon {
+    background: #B42318;
+    box-shadow: 0 12px 26px rgba(180,35,24,0.18);
+}
+
+.form-modal.is-error .form-modal__icon::before {
+    content: "!";
+}
+
+.form-modal__card h2 {
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-size: 26px;
+    line-height: 1.2;
+}
+
+.form-modal__card p {
+    color: var(--gray);
+    line-height: 1.65;
+    margin-bottom: 24px;
+}
+
+.form-modal__button {
+    min-width: 150px;
+    border: 0;
+}
 
 /* WHATSAPP FLOAT */
 .whatsapp-float {
@@ -500,6 +699,73 @@ body {
     }
 }
 
+/*PAGE SEJA FRANQUEADO*/
+/* HERO INTERNO */
+.internal-hero {
+    padding: 160px 0 80px;
+    background: linear-gradient(90deg, #0F172A, #1f2937);
+    color: #fff;
+    text-align: center;
+}
+
+.internal-hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.internal-hero p {
+    max-width: 600px;
+    margin: auto;
+    color: #ddd;
+}
+
+/* FRANQUEADO GRID */
+.franchise-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.franchise-info ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.franchise-info li {
+    margin-bottom: 12px;
+    color: var(--gray);
+}
+
+/* FORM */
+.franchise-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+}
+
+.franchise-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.franchise-form input,
+.franchise-form textarea,
+.franchise-form select {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.franchise-form input:focus,
+.franchise-form textarea:focus,
+.franchise-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
 
 /* ================= RESPONSIVO ================= */
 
@@ -551,6 +817,11 @@ body {
         margin: 0;
     }
 
+    /*PAGE SEJA FRANQUEADO*/
+
+    .franchise-wrapper{
+        grid-template-columns: 1fr;
+    }
 }
 
 @media(max-width: 768px) {
@@ -636,4 +907,8 @@ body {
         text-align:center;
     }
 
+    /*PAGE SEJA FRANQUEADO*/
+    .franchise-wrapper{
+        grid-template-columns: 1fr;
+    }
 }
