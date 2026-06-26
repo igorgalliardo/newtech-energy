@@ -10,15 +10,24 @@ html{
 }
 
 :root {
-    --primary: #52B327;
+    --primary: #42A928;
+    --primary-dark: #2E7D20;
+    --primary-soft: #EEF5EC;
     --white: #FFFFFF;
     --dark: #0F172A;
+    --dark-soft: #182235;
     --gray: #6B7280;
-    --light: #F5F7FA;
+    --light: #F6F8F5;
+    --surface: #FFFFFF;
+    --surface-muted: #FAFBF8;
+    --line: #DDE7D9;
+    --shadow: 0 18px 45px rgba(15, 23, 42, 0.09);
+    --sky: #1389B4;
+    --sky-soft: #58B4D1;
 }
 
 body {
-    background: var(--white);
+    background: var(--light);
     color: var(--dark);
 }
 
@@ -72,9 +81,10 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.94);
     padding: 18px 0;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(14px);
     z-index: 1000;
     transition: all 0.3s ease;
 }
@@ -82,7 +92,7 @@ body {
 /* quando rolar */
 .header.scrolled {
     padding: 12px 0;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 14px 38px rgba(15, 23, 42, 0.12);
 }
 
 .header-content {
@@ -160,7 +170,7 @@ body {
 
 .btn-nav:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 25px rgba(82,179,39,0.3);
+    box-shadow: 0 10px 22px rgba(66,169,40,0.22);
 }
 
 /* ================= MOBILE MENU ================= */
@@ -221,8 +231,9 @@ body {
     background:
         linear-gradient(
             90deg,
-            rgba(0, 0, 0, 0.85),
-            rgba(155, 155, 156, 0.6)
+            rgba(7, 13, 26, 0.92),
+            rgba(15, 23, 42, 0.66),
+            rgba(82, 179, 39, 0.18)
         ),
         url("../img/hero.webp") center/cover no-repeat;
     color: #FFF;
@@ -238,15 +249,16 @@ body {
 .hero h1 {
     font-size: 42px;
     line-height: 1.2;
+    max-width: 680px;
 }
 
 .hero span {
-    color: var(--primary);
+    color: #78D94B;
 }
 
 .hero p {
     margin: 20px 0;
-    color: var(--white);
+    color: rgba(255,255,255,0.88);
     max-width: 500px;
 }
 
@@ -277,19 +289,22 @@ body {
 .btn-primary {
     background: var(--primary);
     color: #fff;
-    border: 2px solid var(--primary);
+    border: 2px solid transparent;
+    box-shadow: 0 8px 18px rgba(66,169,40,0.18);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(82,179,39,0.35);
+    background: var(--primary-dark);
+    box-shadow: 0 12px 24px rgba(46,125,32,0.22);
 }
 
 /* BOTÃO OUTLINE */
 .btn-outline {
     border: 2px solid var(--primary);
-    color: var(--primary);
-    background: transparent;
+    color: #fff;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(8px);
 }
 
 .btn-outline:hover {
@@ -329,15 +344,69 @@ body {
 .section {
     padding: 100px 0;
     scroll-margin-top: 100px;
+    background: var(--surface);
 }
 
 .section.light {
     background: var(--light);
 }
 
+.section:not(.light) {
+    background: var(--surface);
+    color: var(--dark);
+}
+
+#como-funciona {
+    position: relative;
+    overflow: hidden;
+    background:
+        linear-gradient(180deg, rgba(13,136,181,0.96), rgba(77,173,205,0.9)),
+        url("../img/hero.webp") center bottom/cover no-repeat;
+    color: #fff;
+}
+
+#como-funciona::before,
+#como-funciona::after {
+    content: "";
+    position: absolute;
+    width: 220px;
+    height: 72px;
+    background: rgba(255,255,255,0.25);
+    filter: blur(18px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+#como-funciona::before {
+    top: 95px;
+    left: 6%;
+}
+
+#como-funciona::after {
+    right: 7%;
+    bottom: 110px;
+}
+
+#como-funciona .container {
+    position: relative;
+    z-index: 1;
+}
+
+#como-funciona h2 {
+    color: #fff;
+    margin-bottom: 68px;
+}
+
 .section h2 {
     text-align: center;
     margin-bottom: 60px;
+    color: inherit;
+    font-size: 34px;
+    line-height: 1.25;
+}
+
+.section.light h2 {
+    color: var(--dark);
 }
 
 /* ================= GRID ================= */
@@ -349,17 +418,29 @@ body {
 }
 
 .card {
-    background: #fff;
+    background: var(--surface);
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border: 1px solid rgba(221, 231, 217, 0.9);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
     text-align: center;
     transition: all 0.3s ease;
 }
 
+.card h3 {
+    color: var(--dark);
+    margin-bottom: 14px;
+}
+
+.card p {
+    color: var(--gray);
+    line-height: 1.7;
+}
+
 .card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.12);
+    border-color: rgba(82,179,39,0.38);
 }
 
 /* ================= UNIDADES ================= */
@@ -371,17 +452,18 @@ body {
 }
 
 .unit-card {
-    background: #fff;
+    background: var(--surface);
     padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid rgba(221, 231, 217, 0.9);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
     text-align: center;
     transition: all 0.3s ease;
 }
 
 .unit-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 24px 55px rgba(15, 23, 42, 0.12);
 }
 
 .unit-card h3 {
@@ -397,7 +479,7 @@ body {
 .unit-map {
     width: 100%;
     height: 200px; /* 🔥 mapa menor */
-    border-radius: 12px;
+    border-radius: 8px;
     overflow: hidden;
     margin-bottom: 20px;
 }
@@ -423,9 +505,41 @@ body {
 }
 
 .step span {
-    font-size: 28px;
-    color: var(--primary);
+    width: 86px;
+    height: 86px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
     font-weight: bold;
+    box-shadow: 0 14px 28px rgba(15, 23, 42, 0.16);
+}
+
+.step {
+    min-height: 210px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+}
+
+.step h4 {
+    margin: 0 0 12px;
+    color: #fff;
+    font-size: 20px;
+}
+
+.step p {
+    color: rgba(255,255,255,0.9);
+    line-height: 1.65;
+    max-width: 230px;
+    margin: 0 auto;
 }
 
 /* ================= STATS ================= */
@@ -434,11 +548,27 @@ body {
     display: flex;
     justify-content: space-around;
     text-align: center;
+    gap: 24px;
+}
+
+.stats div {
+    flex: 1;
+    padding: 30px 22px;
+    border: 1px solid rgba(15,23,42,0.08);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
 }
 
 .stats strong {
     font-size: 28px;
     color: var(--primary);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.stats span {
+    color: var(--gray);
 }
 
 /* ================= CTA ================= */
@@ -450,12 +580,55 @@ body {
     padding: 80px 0;
 }
 
+.cta h2 {
+    font-size: 34px;
+    line-height: 1.25;
+}
+
 /* ================= CONTACT ================= */
 
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 50px;
+    align-items: stretch;
+}
+
+.contact-info,
+.contact-form {
+    border-radius: 8px;
+}
+
+.contact-info {
+    background: var(--dark);
+    color: #fff;
+    padding: 42px;
+    box-shadow: var(--shadow);
+}
+
+.section.light .contact-info h2,
+.contact-info h2 {
+    text-align: left;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.contact-info p {
+    color: rgba(255,255,255,0.78);
+    line-height: 1.75;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.contact-info p:last-child {
+    border-bottom: 0;
+}
+
+.contact-form {
+    background: var(--surface);
+    padding: 42px;
+    border: 1px solid rgba(221, 231, 217, 0.9);
+    box-shadow: var(--shadow);
 }
 
 .contact-form input,
@@ -464,20 +637,23 @@ body {
     padding: 14px;
     margin-bottom: 15px;
     border-radius: 8px;
-    border: 1px solid #ddd;
-    transition: border 0.3s ease;
+    border: 1px solid var(--line);
+    background: var(--surface-muted);
+    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(82,179,39,0.12);
 }
 
 /* ================= FOOTER ================= */
 
 .footer {
-    background: var(--dark);
+    background: #07101F;
     color: #fff;
     padding: 60px 0 30px;
 }
@@ -703,7 +879,7 @@ body.modal-open {
 /* HERO INTERNO */
 .internal-hero {
     padding: 160px 0 80px;
-    background: linear-gradient(90deg, #0F172A, #1f2937);
+    background: linear-gradient(135deg, #07101F, #0F172A 62%, #244A24);
     color: #fff;
     text-align: center;
 }
@@ -716,7 +892,7 @@ body.modal-open {
 .internal-hero p {
     max-width: 600px;
     margin: auto;
-    color: #ddd;
+    color: rgba(255,255,255,0.78);
 }
 
 /* FRANQUEADO GRID */
@@ -732,17 +908,44 @@ body.modal-open {
     margin-top: 20px;
 }
 
+.franchise-info {
+    background: var(--dark);
+    color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.section.light .franchise-info h2,
+.franchise-info h2 {
+    text-align: left;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.franchise-info p {
+    color: rgba(255,255,255,0.76);
+    line-height: 1.75;
+    margin-bottom: 16px;
+}
+
 .franchise-info li {
     margin-bottom: 12px;
-    color: var(--gray);
+    color: rgba(255,255,255,0.78);
 }
 
 /* FORM */
 .franchise-form {
-    background: #fff;
+    background: var(--surface);
     padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    border: 1px solid rgba(221, 231, 217, 0.9);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.franchise-form h2 {
+    text-align: left;
+    margin-bottom: 24px;
 }
 
 .franchise-form form {
@@ -756,7 +959,9 @@ body.modal-open {
 .franchise-form select {
     padding: 14px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--line);
+    background: var(--surface-muted);
+    transition: border 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .franchise-form input:focus,
@@ -764,6 +969,8 @@ body.modal-open {
 .franchise-form select:focus {
     outline: none;
     border-color: var(--primary);
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(82,179,39,0.12);
 }
 
 
@@ -825,6 +1032,10 @@ body.modal-open {
 }
 
 @media(max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 0 22px;
+    }
 
     .hero {
         height: auto;
@@ -905,6 +1116,15 @@ body.modal-open {
     .footer-grid{
         grid-template-columns: 1fr;
         text-align:center;
+    }
+
+    .card,
+    .unit-card,
+    .contact-info,
+    .contact-form,
+    .franchise-info,
+    .franchise-form {
+        padding: 28px 22px;
     }
 
     /*PAGE SEJA FRANQUEADO*/
